@@ -7,28 +7,18 @@ export class Footer extends Component {
             <footer class="page-footer">
                 <div class="container">
                     <div class="row">
-                        <div class="col l6 s12">
-                            <h5 class="white-text">Social media</h5>
+                        <div class="col l12 s12">
+                            <div class="center-align" style={{fontSize: '18px', marginTop: '20px', fontWeight: 'bold'}}>Web-based Learning and Assessment Platform</div>
                             <p class="grey-text text-lighten-4">
                                 <div class="addthis_inline_share_toolbox_oc40"></div>
                             </p>
                         </div>
-                        <div class="col l4 offset-l2 s12">
-                            <h5 class="white-text">Links</h5>
-                            <ul>
-                                <li><Link class="grey-text text-lighten-3" to="/">Home</Link></li>
-                                <li><Link class="grey-text text-lighten-3" to="/login">Login</Link></li>
-                                <li><Link class="grey-text text-lighten-3" to="/register">Register</Link></li>
-                                <li><Link class="grey-text text-lighten-3" to="/topics">List of topics</Link></li>
-                                <li><Link class="grey-text text-lighten-3" to="/create-topic">Create a topic</Link></li>
-                                <li><Link class="grey-text text-lighten-3" to="/admin-login">Administrator</Link></li>
-                            </ul>
-                        </div>
+                        
                     </div>
                 </div>
-                <div class="footer-copyright">
+                <div class="footer-copyright" style={{paddingBottom: '50px'}}>
                     <div class="container">
-                    © 2021 UCN
+                    © 2021 OPC
                     <Link class="grey-text text-lighten-4 right" to="https://universalbridge.rw">Developed by Universal Bridge Dev</Link>
                     </div>
                 </div>

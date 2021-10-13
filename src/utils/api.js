@@ -1,4 +1,4 @@
-export const API_URL = "https://universalchemistrynetwork.com/api";
+export const API_URL = "https://phyisicsnetworkcommunityplatform.universalchemistrynetwork.com/pcapi";
 // export const API_URL = "http://localhost:5000/api";
 
 export const CONFIG = {

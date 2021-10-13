@@ -1,6 +1,5 @@
-import React, { Component, Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import Loading from '../../shared/Loading/Loading';
 import Alert from '../../shared/Alert/Alert';
@@ -12,8 +11,10 @@ import { API_URL } from '../../utils/api';
 import { Link } from 'react-router-dom';
 import setAuthToken from '../../utils/setAuthToken';
 import searchData from "../../utils/search";
-import SubNav from '../../components/SubNav';
 import Modal from '../../shared/Modal/Modal';
+import ReactQuill from "react-quill";
+import 'react-quill/dist/quill.snow.css'; // ES6
+import { AdminNav } from '../../components/AdminNav';
 
 // import { create } from 'doka';
 
@@ -64,21 +65,6 @@ const thumbButton = {
 const editImage = (image, done) => {
     const imageFile = image.doka ? image.doka.file : image;
     const imageState = image.doka ? image.doka.data : {};
-    // create({
-    //   // recreate previous state
-    //   ...imageState,
-  
-    //   // load original image file
-    //   src: imageFile,
-    //   outputData: true,
-  
-    //   onconfirm: ({ file, data }) => {
-    //     Object.assign(file, {
-    //       doka: { file: imageFile, data }
-    //     });
-    //     done(file);
-    //   }
-    // });
 };
 
 
@@ -118,25 +104,6 @@ const CreateTopic = (props) => {
         <button
             style={thumbButton}
             onClick={() => setFiles([])}
-            // onClick={() =>
-            // editImage(file, (output) => {
-            //     const updatedFiles = [...files];
-
-            //     // replace original image with new image
-            //     updatedFiles[index] = output;
-
-            //     // revoke preview URL for old image
-            //     if (file.preview) URL.revokeObjectURL(file.preview);
-
-            //     // set new preview URL
-            //     Object.assign(output, {
-            //     preview: URL.createObjectURL(output)
-            //     });
-
-            //     // update view
-            //     setFiles(updatedFiles);
-            // })
-            // }
         >
             delete
         </button>
@@ -160,14 +127,14 @@ const CreateTopic = (props) => {
                     url: `${API_URL}/topics/text`,
                     method: 'POST',
                     data: {
-                        user_id: user.user_id,
+                        user_id: user.admin_id,
                         topic_title: topic,
                     },
                 });
                 if (res.status === 200) {
                     setTopic("");
                     setSuccess("Topic has been created successfully");
-                    loadTopics(props.auth.user_id);
+                    loadTopics(user.admin_id);
                 }
                 console.log("Post res: ", res);
                 setLoading(false);
@@ -193,7 +160,7 @@ const CreateTopic = (props) => {
             try {
                 setLoading(true);
                 const formData = new FormData();
-                formData.append("user_id", user.user_id);
+                formData.append("user_id", user.admin_id);
                 formData.append("image", files[0]);
                 formData.append("description", img_desc);
 
@@ -209,7 +176,7 @@ const CreateTopic = (props) => {
                     setFiles([]);
                     setImgDesc("");
                     setSuccess("Topic has been created successfully");
-                    loadTopics(props.auth.user_id);
+                    loadTopics(user.admin_id);
                 }
                 setLoading(false);
                 console.log("Post res: ", result);
@@ -233,14 +200,20 @@ const CreateTopic = (props) => {
             console.log("Topic err: ", error);
         }
     }
+
+    const handleChangeTopic = (content) => {
+        setTopic(content)
+    }
     useEffect(() => {
-        if (props.auth.userCategory === "user" && props.auth.user_id !== null) {
+        console.log("Current user state: ", props.auth);
+        const user = props.auth.userCategory === "admin" ? props.auth.user !== null ? props.auth.user : props.auth.data : null;
+        if (user !== null) {
             if (props.auth.user !== null) {
-                setUser(props.auth.user.data[0]);
+                setUser(user);
             } else {
-                setUser(props.auth.data);
+                setUser(user);
             }
-            loadTopics(props.auth.user_id);
+            loadTopics(user.admin_id);
         }
     }, [props.auth])
 
@@ -252,7 +225,7 @@ const CreateTopic = (props) => {
     return (
         <Fragment>
             <div>
-                <Navbar />
+                {/* <AdminNav /> */}
                 <section>
                     <div className="container-fluid">
                         <div className="row" style={{marginBottom: '0px'}}>
@@ -278,9 +251,9 @@ const CreateTopic = (props) => {
                                                     </div>
                                                 </div>
                                                 <div className="col xl10 l10 m10 s9">
-                                                    <div className="list-title-small">{item.topic_title !== undefined ? item.topic_title : ""}</div>
-                                                    <div>{item.image !== undefined ? (<img className="topic-img" src={`${API_URL}/${item.image}`} />) : ""}</div>
-                                                    <div className="list-details-small">{item.description !== undefined ? item.description : ""}</div>
+                                                    <div className="list-title-small" dangerouslySetInnerHTML={{__html: item.topic_title !== undefined ? item.topic_title : "" }}></div>
+                                                    <div>{item.image !== undefined ? (<img alt="" className="topic-img" src={`${API_URL}/${item.image}`} />) : ""}</div>
+                                                    <div className="list-details-small" dangerouslySetInnerHTML={{__html: item.description !== undefined ? item.description : "" }}></div>
                                                     <div className="row" style={{marginBottom: "0px"}}>
                                                         <div className="col xl6 l6 m6 s6" style={{marginTop: "15px"}}>
                                                             {/* <span className="editor-title-small"><i className="fas fa-edit"></i>Editor</span>
@@ -304,7 +277,7 @@ const CreateTopic = (props) => {
                                         <div>
                                             <div className="row">
                                                 <div className="col xl2 l2 m2 s12" />
-                                                <div className="col xl8 l8 m8 s12">
+                                                <div className="col xl12 l12 m12 s12">
                                                 <div class="row">
                                                     <div class="col s12">
                                                         <center>
@@ -319,21 +292,11 @@ const CreateTopic = (props) => {
                                                         </div>
                                                         <div style={{padding: '10px', paddingTop: '20px'}} class="col s12">
                                                             {tab === 1 ? (
-                                                                <div className="animate__animated animate__zoomIn">
+                                                                <div className="animate__animated animate__zoomIn" style={{width: '100%'}}>
                                                                     <center>
-                                                                        <input 
-                                                                        type="text" 
-                                                                        onChange={(e) => {
-                                                                            setTopic(e.target.value);
-                                                                            setError({ element: "", msg: "" });
-                                                                            setSuccess("");
-                                                                        }}
-                                                                        disabled={loading}
-                                                                        className={`browser-default my-input ${error.element === "topic" ? 'danger-input': ''}`}
-                                                                        placeholder="Topic title" 
-                                                                        value={topic}
-                                                                        style={{width: '95%'}}
-                                                                        />
+                                                                        <ReactQuill value={topic}
+                                                                            className="rounded mb-10"
+                                                                            onChange={handleChangeTopic} />
                                                                     </center>
                                                                     {error.element === "topic" ? (
                                                                         <span className="helper-text danger-color">{error.msg}</span>
@@ -399,7 +362,7 @@ const CreateTopic = (props) => {
                         </div>
                     </div>
                 </section>
-                <Footer />
+                {/* <Footer /> */}
             </div>
 
             {/* Modal */}
@@ -433,9 +396,9 @@ const CreateTopic = (props) => {
                                                 </div>
                                             </div>
                                             <div className="col xl10 l10 m10 s9">
-                                                <div className="list-title-small">{item.topic_title !== undefined ? item.topic_title : ""}</div>
-                                                <div>{item.image !== undefined ? (<img className="topic-img" src={`${API_URL}/${item.image}`} />) : ""}</div>
-                                                <div className="list-details-small">{item.description !== undefined ? item.description : ""}</div>
+                                                <div className="list-title-small" dangerouslySetInnerHTML={{__html: item.topic_title !== undefined ? item.topic_title : ""}}></div>
+                                                <div>{item.image !== undefined ? (<img alt="" className="topic-img" src={`${API_URL}/${item.image}`} />) : ""}</div>
+                                                <div className="list-details-small" dangerouslySetInnerHTML={{__html: item.description !== undefined ? item.description : "" }}></div>
                                                 <div className="row" style={{marginBottom: "0px"}}>
                                                     <div className="col xl6 l6 m6 s6" style={{marginTop: "15px"}}>
                                                         {/* <span className="editor-title-small"><i className="fas fa-edit"></i>Editor</span>

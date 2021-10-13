@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import AdminNav from '../../components/AdminNav'
 import AdminSideNav from '../../components/AdminSideNav'
+import { Link } from 'react-router-dom'
 
 export class Admin extends Component {
     state = {
@@ -18,7 +19,7 @@ export class Admin extends Component {
                     </div>
                     <div className="col xl10 l10 m10 s12">
                         <div class="main admin-container-main animate__animated animate__zoomIn">
-                            <div class="container-fluid">
+                            <div class="container-fluid admin-bg">
                                 <div class="row">
                                     <div class="col s12 m4">
                                         <div class="card blue white-text">
@@ -29,7 +30,7 @@ export class Admin extends Component {
                                                 </div>
                                                 <div class="card-icon"><i class="material-icons medium valign">pie_chart</i></div>
                                             </div>
-                                            <div class="card-action"><a href="/topics-list">View report</a></div>
+                                            <div class="card-action"><Link to="/topics-list">View report</Link></div>
                                         </div>
                                     </div>
                                     <div class="col s12 m4">
@@ -41,7 +42,7 @@ export class Admin extends Component {
                                                 </div>
                                                 <div class="card-icon"><i class="material-icons medium valign">check_circle</i></div>
                                             </div>
-                                            <div class="card-action"><a href="/users">View report</a></div>
+                                            <div class="card-action"><Link to="/users">View report</Link></div>
                                         </div>
                                     </div>
                                     <div class="col s12 m4">
@@ -53,11 +54,11 @@ export class Admin extends Component {
                                                 </div>
                                                 <div class="card-icon"><i class="material-icons medium valign">build</i></div>
                                             </div>
-                                            <div class="card-action"><a href="/topics-list">View report</a></div>
+                                            <div class="card-action"><Link to="/topics-list">View report</Link></div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                {/* <div class="row">
                                     <div class="col s12 m8">
                                         <div class="card">
                                             <table class="bordered highlight">
@@ -83,7 +84,7 @@ export class Admin extends Component {
                                             </table>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>

@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { AiFillHome, AiOutlineCustomerService, AiOutlineLogin, AiOutlineUser, AiOutlineUserSwitch, } from "react-icons/ai"
-import PublicFooter from '../../components/PublicFooter'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
-import BG_IMAGE from '../../assets/content/img1.png'
+import BG_IMAGE from '../../assets/content/img2.gif'
+import BG_IMAGE1 from '../../assets/content/img13.jpg'
 
 
 export class Home extends Component {
@@ -12,76 +11,56 @@ export class Home extends Component {
         return (
             <div>
                 <Navbar />
-                {/* Homepage content */}
-                    <div class="parallax-container">
-                        <div class="section no-pad-bot">
-                            <div class="home-container-shadow">
-                                <h1 class="header center home-title animate__animated animate__zoomIn">Universal chemistry network</h1>
-                                <div class="row center">
-                                    <Link to="/topics" class="btn-large waves-effect outline-btn getStarted" style={{lineHeight: '48px !important'}}>Get Started</Link>
-                                </div>
+                <section className="section bg-white">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col s12 m6 img-display" style={{overflow: 'hidden',}}>
+                                <img className="right-img" src={BG_IMAGE} alt="OPC" style={{transform: "translate3d(-50%, 169.284px, 0px); opacity: 1; top: -181px", width: "100%"}} />
                             </div>
-                        </div>
-                        <div class="parallax"><img src={BG_IMAGE} alt="Unsplashed background img 1" style={{transform: "translate3d(-50%, 169.284px, 0px); opacity: 1; top: -181px"}} /></div>
-                    </div>
-                    <div class="row center container" style={{height: "0px", display: "flow-root", marginBottom: '0px'}}>
-                        <div class="search-bar animate__animated animate__bounceIn">
-                            <div class="row">
-                                <div class="col xl2 l2 m2 s12"></div>
-                                <div class="col xl8 l8 m8 s12">
-                                    <h5 className="search-title">Search topic keyword</h5>
-                                    <div class="input-field col s12" style={{margin: "0px"}}>
-                                        <i class="fas fa-search prefix"></i>
-                                        <input onChange={() => this.props.history.push("/topics")} id="home-search" type="text" class="home-search-input autocomplete" />
+                            <div className="col s12 m6">
+                                <div className="">
+                                    <h1 className="header home-title animate__animated animate__zoomIn" style={{fontWeight: 'bold', color: 'black', fontSize: '60px'}}>Online Physics Classroom</h1>
+                                    <div className="row">
+                                        <Link to="/topics" className="btn-large waves-effect outline-btn getStarted" style={{lineHeight: '48px !important', marginLeft: '10px'}}>Get Started</Link>
                                     </div>
                                 </div>
-                                <div class="col xl2 l2 m2 s12"></div>
+                            </div>
+                            <div className="col s12 m6 img-display1" style={{overflow: 'hidden',}}>
+                                <img className="right-img" src={BG_IMAGE} alt="OPC" style={{transform: "translate3d(-50%, 169.284px, 0px); opacity: 1; top: -181px", width: "100%"}} />
                             </div>
                         </div>
                     </div>
-                    <section class="section bg-white">
-                        <div class="container">
-                            <center>
-                                <h4 class="my-title">The forum</h4>
-                                <div class="second-text">
-                                    The UNC aim is online discussion group. Any user can post the doubts topics and can reply for the other user doubts. This is useful for a researcher who is interested to correct data and idea from particular people. Facility to share the resource and post topic that can be viewed by registered user. User also be able to share his/her though on given topic.
-                                </div>
-                            </center>
-                        </div>
-                    </section>
-                    <section class="section bg-white">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col s12 m12">
-                                    <div class="card vertical animate__animated animate__zoomIn">
-                                        <div class="card-image">
-                                            <img src={BG_IMAGE} />
-                                        </div>
-                                        <div class="card-stacked">
-                                            <div class="card-content">
-                                                <h5><b>Students discussions</b></h5>
-                                            <p class="second-text">Online discussion provides opportunities for collaboration and active learning that do not always take place in a traditional lecture context. OD also provides students with the opportunity to discuss, ask questions, and resulting in deeper learning in easy way.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {/* <div class="col s12 m6">
-                                    <div class="card vertical">
-                                    <div class="card-image">
-                                        <img src={BG_IMAGE} />
-                                    </div>
-                                    <div class="card-stacked">
-                                        <div class="card-content">
-                                            <h5><b>Our services</b></h5>
-                                        <p class="second-text">I am a very simple card. I am good at containing small bits of information.</p>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div> */}
+                </section>
+                <section className="section bg-white">
+                    <div className="container">
+                        <div>
+                            <h4 className="my-title">Web-based Learning and Assessment Platform</h4>
+                            <div className="second-text">
+                            Web-based Learning and Assessment Platform (WLAP) is an online Collaboration board. It is a suitable methodology of teaching and learning simple harmonic motion (SHM) since it facilitates collaboration between teachers and learners within a digital environment. Any user can ask and respond to questions, send a comment as well as develop an argument to benefit the class. Additionally, the WLAP is useful for researchers and educators who are interested in collecting data and ideas from specific participants. Furthermore, this WLAP allows learners to share resources and discuss posted topics, enabling them to learn from one another and get enough access to online op-ed Physics materials.   
                             </div>
                         </div>
-                        
-                    </section>
+                    </div>
+                </section>
+                <section className="section bg-white">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col s12 m12">
+                                <div className="card vertical animate__animated animate__zoomIn">
+                                    <div className="card-image" style={{height: '300px', overflow: 'hidden'}}>
+                                        <img src={BG_IMAGE1} alt=""/>
+                                    </div>
+                                    <div className="card-stacked">
+                                        <div className="card-content">
+                                            <h5 className="my-title"><b>Students collaboration</b></h5>
+                                        <p className="second-text">Collaborative learning is a setting in which two or more people learn or study something together. By employing WLAP as a physics teaching, learning, and assessment tool, learners have more flexibility to work at their own pace, which improves their learning experience and helps them build a better understanding of provided  physics concepts along with their teachers. </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </section>
                 <Footer />
             </div>
         )

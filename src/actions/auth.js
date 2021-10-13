@@ -34,15 +34,17 @@ export const toogleNav = () => (dispatch) => {
  * log out the user
  */
 export const LoadUserDetails = (callback) => async (dispatch) => {
+  let route = localStorage.getItem(ACCOUNT_CATEGORY) === "admin" || localStorage.getItem(ACCOUNT_CATEGORY) === undefined ? "/admin/current/logedin/" : "/user/logedin/" + localStorage.getItem(USER_ID);
+  console.log("User category: ", localStorage.getItem(ACCOUNT_CATEGORY))
   try {
     callback(true);
     setAuthToken();
-    const res = await axios.get(`${API_URL}/user/logedin/${localStorage.getItem(USER_ID)}`, CONFIG);
-    console.log("Res: ", res);
+    const res = await axios.get(`${API_URL}${route}`, CONFIG);
+    console.log("Res admin: ", res);
 
     dispatch({
       type: USER_LOADED,
-      payload: res.data,
+      payload: localStorage.getItem(ACCOUNT_CATEGORY) === "admin" || localStorage.getItem(ACCOUNT_CATEGORY) === undefined ? res.data.data : res.data,
     });
 
     callback(false);

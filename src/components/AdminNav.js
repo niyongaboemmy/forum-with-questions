@@ -10,32 +10,27 @@ export class AdminNav extends Component {
         modal: false,
     }
     componentDidMount = () => {
-        if (this.props.auth.userCategory === "admin" && this.props.auth.user_id !== null) {
-            if (this.props.auth.user !== null) {
-                this.setState({ user: this.props.auth.user.data[0] });
-            } else {
-                this.setState({ user: this.props.auth.data });
-            }
-        } else {
+        if (this.props.auth.token === null) {
             this.props.LogoutTheUser();
         }
     }
     render() {
+        const user = this.props.auth.userCategory === "admin" ? this.props.auth.user !== null ? this.props.auth.user : this.props.auth.data : null;
         return (
             <div class="navbar-fixed">
-                {console.log("Logged: ", this.state.user)}
+                {console.log("Logged: ", this.props.auth)}
                 <nav>
                     <div class="nav-wrapper">
                         <ul>
-                            <li><Link to="/admin"><i class="material-icons">menu</i></Link></li>
-                            <li><Link class="title" to="/admin">Dashboard</Link></li>
+                            <li><Link to="/admin"><i class="material-icons nav-text">menu</i></Link></li>
+                            <li><Link class="title nav-text" to="/admin">Dashboard</Link></li>
                         </ul>
                         <ul class="right">
-                            <li><a href="#!"><i class="fas fa-user"></i> {this.state.user !== null && this.state.user.fname}</a></li>
+                            <li className="nav-text"><a href="#!" className="nav-text"><i class="fas fa-user nav-text"></i> {user !== null && user.fname}</a></li>
                             {/* <li><a href="#!"><i class="material-icons">apps</i></a></li>
                             <li><a href="#!"><i class="material-icons">settings</i></a></li>
                             <li><a href="#!"><i class="material-icons">help</i></a></li> */}
-                            <li><span style={{marginRight: '10px', cursor: 'pointer'}} onClick={() => this.props.LogoutTheUser()}><i class="fas fa-sign-out-alt"></i></span></li>
+                            <li><span style={{marginRight: '10px', cursor: 'pointer'}} onClick={() => user !== null && this.props.LogoutTheUser()}><i class="fas fa-sign-out-alt nav-text"></i></span></li>
                         </ul>
                     </div>
                 </nav>

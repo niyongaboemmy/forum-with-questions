@@ -9,8 +9,10 @@ export class AdminSideNav extends Component {
         return (
             <ul class="side-nav fixed transparent z-depth-0">
                 <li class="active"><Link to="/admin"><i class="material-icons">dashboard</i>Dashboard</Link></li>
+                <li><Link to="/admin-create-topic"><i class="material-icons">add</i>Create topic</Link></li>
                 <li><Link to="/topics-list"><i class="material-icons">mail</i>Topics</Link></li>
                 <li><Link to="/users"><i class="material-icons">person</i>Users</Link></li>
+                <li><Link to="/test"><i class="material-icons">list</i>Prepare test</Link></li>
                 <li><div class="divider"></div></li>
                 <li onClick={() => this.props.LogoutTheUser()}><Link to="/admin"><i class="material-icons">logout</i>Logout</Link></li>
                 {/* <li><Link to="/admin"><i class="material-icons">help</i>Help & Feedback</Link></li> */}

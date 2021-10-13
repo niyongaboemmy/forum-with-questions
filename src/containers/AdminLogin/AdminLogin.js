@@ -171,7 +171,7 @@ class AdminLogin extends Component {
                                 {/* <center><NavLink to="/register" className="hoverable" style={{cursor: 'pointer', padding: '10px', borderRadius: '3px', color: '#004161'}}>New user ? Register</NavLink></center> */}
                                 <br/>
                                 <center>
-                                    <label>Universal chemistry network</label><br/>
+                                    <label>Physics Network Community</label><br/>
                                     <small><label>@2021</label></small>
                                 </center>
                             </form>

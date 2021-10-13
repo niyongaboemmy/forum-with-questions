@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
-import BG_IMAGE from '../../assets/content/img1.png'
 import setAuthToken from '../../utils/setAuthToken'
 import axios from 'axios'
 import searchData from "../../utils/search";
@@ -32,13 +31,13 @@ export class Topics extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="bg-white">
                 <Navbar />
                 {console.log("Topics: ", this.state.topics)}
                 
                 <div className="row" style={{backgroundColor: '#fff'}}>
                     <center>
-                        <h4 style={{fontSize: '20px', margin: '0px', paddingTop: '36px'}} class="my-title">List of topics</h4>
+                        <h4 style={{fontSize: '23px', margin: '0px', paddingTop: '36px'}} class="my-title">List of topics</h4>
                     </center>
                     <div className="col xl2 l2 m2 s12" />
                     <div class="input-field col xl8 l8 m8 s12 search-topic-container" style={{margin: "0px"}}>
@@ -49,7 +48,7 @@ export class Topics extends Component {
                 </div>
                 
                 <section>
-                    <div class="container main-container">
+                    <div class="container main-container" style={{minHeight: '600px'}}>
                     {this.state.loading === true && (
                         <div className="list-item">
                             <center><Loading msg="Please wait" /></center>
@@ -59,24 +58,24 @@ export class Topics extends Component {
                     {this.state.topics === "" ? "" : 
                         searchData(this.state.topics, this.state.search, { fname: true, lname: true, }).map((item, i) => (
                             <Link to={`/details/${item.topic_id}`} key={i + 1}>
-                                <div class="list-item animate__animated animate__zoomIn main-topics">
+                                <div class="list-item animate__animated animate__zoomIn main-topics" style={{border: '1px solid #d7d7d7'}}>
                                     <div class="row">
-                                        <div class="col xl2 l2 m2 s3">
+                                        <div class="col xl1 l1 m1 s1">
                                             <div class="user-list-icon">
                                                 <i class="fas fa-user-circle"></i>
                                             </div>
                                         </div>
-                                        <div class="col xl10 l10 m10 s9">
-                                            <div class="list-title">{item.topic_title}</div>
-                                            <div className="topic-img-container">{item.image !== undefined ? (<img className="topic-img" src={`${API_URL}/${item.image}`} />) : ""}</div>
-                                            <div class="list-details">{item.description}</div>
-                                            <div class="row" style={{marginBottom: "0px"}}>
+                                        <div class="col xl11 l11 m11 s10">
+                                            <div class="list-title" style={{fontSize: '16px', color: 'black', marginLeft: '10px'}} dangerouslySetInnerHTML={{__html: item.topic_title}}></div>
+                                            <div className="topic-img-container">{item.image !== undefined ? (<img className="topic-img" alt="" src={`${API_URL}/${item.image}`} />) : ""}</div>
+                                            <div class="list-details" dangerouslySetInnerHTML={{__html: item.description}}></div>
+                                            <div class="row" style={{marginBottom: "0px", marginTop: '15px'}}>
                                                 <div class="col xl4 l4 m4 s6" style={{marginTop: "5px"}}>
                                                     <span class="editor-title"><i class="fas fa-edit"></i></span>
-                                                    <span class="editor-name">{item.fname} {item.lname}</span>
+                                                    <span class="editor-name" style={{fontSize: '11px'}}>{item.fname} {item.lname}</span>
                                                 </div>
                                                 <div class="col xl4 l4 m4 s6">
-                                                    <div class="time-cont"><i className="fas fa-calendar"></i> {item.hour} {item.day} {item.date} {item.year}</div>
+                                                    <div class="time-cont" style={{fontSize: '11px'}}><i className="fas fa-calendar"></i> {item.hour} {item.day} {item.date} {item.year}</div>
                                                 </div>
                                                 <div class="col xl4 l4 m4 s6">
                                                     <div class="item-icons" style={{marginTop: "5px", float: "right", color: "rgb(73, 73, 73)"}}>

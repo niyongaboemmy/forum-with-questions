@@ -195,9 +195,9 @@ export class Details extends Component {
                                                             </div>
                                                         </div>
                                                         <div className="col xl10 l10 m10 s9">
-                                                            <div className="list-title-small">{item.topic_title !== undefined ? item.topic_title : ""}</div>
-                                                            <div>{item.image !== undefined ? (<img className="topic-img" src={`${API_URL}/${item.image}`} />) : ""}</div>
-                                                            <div className="list-details-small">{item.description !== undefined ? item.description : ""}</div>
+                                                            <div className="list-title-small" style={{fontWeight: 'normal'}} dangerouslySetInnerHTML={{__html: item.topic_title !== undefined ? item.topic_title : ""}}></div>
+                                                            <div>{item.image !== undefined ? (<img alt="" className="topic-img" src={`${API_URL}/${item.image}`} />) : ""}</div>
+                                                            <div className="list-details-small" dangerouslySetInnerHTML={{__html: item.description !== undefined ? item.description : ""}}></div>
                                                             <div className="row" style={{marginBottom: "0px"}}>
                                                                 <div className="col xl6 l6 m6 s6" style={{marginTop: "5px"}}>
                                                                     <span className="editor-title-small"><i className="fas fa-edit"></i></span>
@@ -216,26 +216,23 @@ export class Details extends Component {
                                 </section>
                             </div>
                             <div class="col xl9 l9 m12 s12">
-                                <div class="list-item right-col animate__animated animate__zoomIn">
+                                <div class="list-item right-col animate__animated animate__zoomIn" style={{backgroundColor: 'rgb(241 241 241)'}}>
                                     <div class="row" style={{marginLeft: 'auto', marginRight: 'auto'}}>
                                         <div class="col xl2 l2 m2 s12">
-                                            <div class="user-list-icon">
+                                            <div class="user-list-icon hidden-sm">
                                                 <Link to="/topics">
                                                     <i className="fas fa-arrow-alt-circle-left left hidden-lg" style={{marginRight: '-65px'}}></i>
                                                 </Link>
-                                                <i class="fas fa-user-circle"></i>
+                                                <i class="fas fa-user-circle hidden-sm"></i>
                                             </div>
                                             <div class="row hidden-sm" style={{marginBottom: "0px"}}>
                                                 <div class="col xl12 l12" style={{marginTop: "5px"}}>
-                                                    <span class="editor-title"><i class="fas fa-edit"></i></span>
-                                                    <span class="editor-name">{this.state.topic !== "" ? this.state.topic.fname + " " + this.state.topic.lname : ""}</span>
+                                                    <span class="editor-name" style={{fontWeight: 'bold', color: '#000'}}>{this.state.topic !== "" ? this.state.topic.fname + " " + this.state.topic.lname : ""}</span>
                                                 </div>
                                                 <div class="col xl12 l12">
-                                                    <br />
                                                     <div class="time-cont"><i className="fas fa-calendar"></i> {this.state.topic !== "" ? `${this.state.topic.hour} ${this.state.topic.date} ${this.state.topic.year}` : ""}</div>
                                                 </div>
                                                 <div class="col xl12 l12">
-                                                    <br />
                                                     <div class="time-cont"><i className="fas fa-comment"></i> {this.state.topic !== "" ? `${this.state.topic.totalComments}` : ""}</div>
                                                 </div>
                                             </div>
@@ -248,9 +245,9 @@ export class Details extends Component {
                                             ) : (<>
                                             
 
-                                            <div class="list-title center">{this.state.topic !== "" ? this.state.topic.topic_title : ""}</div>
-                                            <div class="list-title center">{this.state.topic.image !== undefined ? <img className="topic-img" src={`${API_URL}/${this.state.topic.image}`} /> : ""}</div>
-                                            <div class="list-details-selected"><center>{this.state.topic !== "" ? this.state.topic.description !== undefined ? this.state.topic.description : "" : ""}</center></div>
+                                            <div class="list-title" style={{fontWeight: 'bold', color: 'black', fontSize: '15px'}} dangerouslySetInnerHTML={{__html: this.state.topic !== "" ? this.state.topic.topic_title : ""}}></div>
+                                            <div class="list-title">{this.state.topic.image !== undefined ? <img alt="" className="topic-img" src={`${API_URL}/${this.state.topic.image}`} /> : ""}</div>
+                                            <div class="list-details-selected" dangerouslySetInnerHTML={{__html: this.state.topic !== "" ? this.state.topic.description !== undefined ? this.state.topic.description : "" : ""}}></div>
                                             
                                             <hr style={{marginBottom: '0px'}} />
                                             <div class="row hidden-lg" style={{marginBottom: "0px", boxShadow: '0px 11px 8px -10px #797979' ,paddingBottom: '20px'}}>
@@ -279,14 +276,14 @@ export class Details extends Component {
                                                     <div className="col xl12 l12 s12">
                                                         <div className="list-item-small animate__animated animate__bounceIn">
                                                             <div className="row">
-                                                                <div className="col xl2 l2 m2 s3">
+                                                                <div className="col xl1 l1 m1 s2">
                                                                     <div className="user-list-icon-small">
                                                                         <i className="fas fa-user-circle"></i>
                                                                     </div>
                                                                 </div>
-                                                                <div className="col xl10 l10 m10 s9">
+                                                                <div className="col xl11 l11 m11 s10">
                                                                     <div className="list-title-small">{item.comment !== undefined ? item.comment : ""}</div>
-                                                                    <div>{item.image !== undefined ? <img className="topic-img" src={`${API_URL}/${item.image}`} /> : ""}</div>
+                                                                    <div>{item.image !== undefined ? <img alt="" className="topic-img" src={`${API_URL}/${item.image}`} /> : ""}</div>
                                                                     <div className="list-details-small">{item.description !== undefined ? item.description : ""}</div>
                                                                     <div className="row" style={{marginBottom: "0px"}}>
                                                                         <div className="col xl6 l6 m6 s6" style={{marginTop: "5px"}}>
@@ -311,16 +308,16 @@ export class Details extends Component {
                                 <div class="submit-comment">
                                     <form onSubmit={this.createPostComment}>
                                         <div class="row">
-                                            <div class="col l4 m4 s2">
+                                            <div class="col l2 m2 s2 hidden-sm">
                                                 <div class="user-list-icon-small">
                                                     <i class="fas fa-user-circle"></i>
                                                     <div className="hidden-sm">
-                                                        {this.state.user !== null ? this.state.user.fname : ""} {this.state.user !== null ? this.state.user.lname : ""}
+                                                        {this.state.user !== null ? this.state.user.fname : ""}
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col l4 m4 s7">
-                                            <input 
+                                            <div class="col l8 m8 s12">
+                                            <textarea 
                                                 type="text"
                                                 onChange={(e) => {
                                                     this.setState({ topic_comment: e.target.value });
@@ -335,8 +332,8 @@ export class Details extends Component {
                                                     <span className="helper-text danger-color"></span>
                                                 ) : ""}
                                             </div>
-                                            <div class="col l4 m4 s3">
-                                                <button style={{maxWidth: '100%'}} class="btn-small waves-effect outline-btn nav-outline-btn submit-comment-btn" type="submit"><i class="fas fa-edit"></i> <span className="hidden-sm">Comment</span></button>
+                                            <div class="col l2 m2 s12">
+                                                <button style={{maxWidth: '100%'}} class="btn-small waves-effect outline-btn nav-outline-btn submit-comment-btn right" type="submit"><i class="fas fa-edit"></i> <span className="">Send</span></button>
                                             </div>
                                         </div>
                                     </form>

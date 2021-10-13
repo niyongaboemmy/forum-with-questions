@@ -4,6 +4,7 @@ import { NavLink, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { LogoutTheUser, toogleNav } from "../actions/auth";
 import Modal from '../shared/Modal/Modal';
+import MyLogo from '../assets/content/logo1.png';
 
 class Navbar extends Component {
     state = {
@@ -21,27 +22,29 @@ class Navbar extends Component {
     }
     render() {
         // const { isAuthenticated, user, loading, navOpen } = this.props.auth;
+        const user = this.props.auth.userCategory === "user" && this.props.auth.user_id !== null ? this.props.auth.user !== null ? this.props.auth.user.data[0] : this.props.auth.data : null;
         return (
             <Fragment>
-                <div class="navbar-fixed">
+                <div className="navbar-fixed">
                     <nav>
-                        <div class="container-fluid">
-                            <div class="nav-wrapper">
-                                <span style={{cursor: 'pointer'}} onClick={() => this.setState({ modal: true })} class="brand-logo-icon"><i class="fas fa-bars"></i>&nbsp; UCN</span>
-                                <span style={{cursor: 'pointer'}} onClick={() => this.setState({ modal: true })}><i className="fas fa-bars right menus-bar"></i></span>
-                                {this.state.user !== null ? (
-                                    <ul class="right hide-on-med-and-down" style={{marginRight: '15px'}}>
-                                        <li><NavLink to="/create-topic"><i className="fas fa-edit"></i> Create a topic</NavLink></li>
-                                        <li><Link to="/topics"><i className="fas fa-list"></i> View topics</Link></li>
-                                        <li style={{paddingLeft: '15px'}}><i className="fas fa-user"></i> {this.state.user.fname} {this.state.user.lname} </li>
-                                        <li style={{paddingLeft: '15px', cursor: 'pointer'}} onClick={() => this.props.LogoutTheUser()}><i class="fa fa-arrow-alt-circle-right" style={{cursor: 'pointer'}}></i> Logout</li>
+                        <div className="container">
+                            <div className="nav-wrapper">
+                                <Link to="/" style={{cursor: 'pointer'}} className="brand-logo-icon">&nbsp; <img src={MyLogo} style={{height: '40px', marginTop: '10px'}} alt="" /></Link>
+                                <span style={{cursor: 'pointer', marginTop: '10px'}} onClick={() => this.setState({ modal: true })}><i className="fas fa-bars right menus-bar nav-text hidden-lg" style={{cursor: 'pointer', marginTop: '10px'}}></i></span>
+                                {console.log(this.props.auth.user)}
+                                {user !== null ? (
+                                    <ul className="right hide-on-med-and-down nav-text" style={{marginRight: '15px'}}>
+                                        <li><NavLink  className="nav-text"to="/create-topic">Create a topic</NavLink></li>
+                                        <li><Link className="nav-text" to="/topics">View topics</Link></li>
+                                        <li style={{paddingLeft: '15px'}}>{user.fname} {user.lname} </li>
+                                        <li style={{paddingLeft: '15px', cursor: 'pointer'}} onClick={() => this.props.LogoutTheUser()}>Logout</li>
                                     </ul>
                                 ) : (
-                                    <ul class="right hide-on-med-and-down">
-                                        <li><Link to="/"><i className="fas fa-home"></i> Home</Link></li>
-                                        <li><Link to="/admin-login"><i className="fas fa-home"></i> Admin</Link></li>
-                                        <li><Link to="/login"><i className="fas fa-user-circle"></i> Login</Link></li>
-                                        <li><Link to="/register" class="btn-small waves-effect outline-btn nav-outline-btn">Register</Link></li>
+                                    <ul className="right hide-on-med-and-down nav-text">
+                                        <li><Link className="nav-text" to="/">Home</Link></li>
+                                        <li><Link className="nav-text" to="/admin-login">Admin</Link></li>
+                                        <li><Link className="nav-text" to="/login">Login</Link></li>
+                                        <li><Link to="/register" className="btn-small waves-effect outline-btn nav-outline-btn">Register</Link></li>
                                     </ul>
                                 )}
                                 

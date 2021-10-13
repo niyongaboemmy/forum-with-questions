@@ -96,6 +96,7 @@ class Register extends Component {
     
         // errors
         } catch (error) {
+            console.log("Reg err: ", {...error});
             this.setState({loading: false});
     
             if (error.response === undefined) {
@@ -110,6 +111,11 @@ class Register extends Component {
                     element: "main",
                     msg: error.response.data.msg,
                 }});
+            } else if (error.response.status === 400) {
+                return this.setState({error: {
+                    element: "main",
+                    msg: error.response.data.errors ? error.response.data.errors[0].msg : "Something went wrong",
+                }});
             } else {
                 return this.setState({error: {
                     element: "main",
@@ -122,7 +128,7 @@ class Register extends Component {
 
         return (
             <Fragment>
-                <div>
+                <div className="bg-white">
                     <Navbar />
                     <div className="row">
                         <div className="col xl4 l4 m3 s12"/>
