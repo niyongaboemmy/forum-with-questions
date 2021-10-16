@@ -793,3 +793,77 @@ nav {
   p {
       margin: 0px;
   }
+  .font-bold {
+      font-weight: bold;
+  }
+  .question-item {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+  }
+  .question-item .row {
+    margin-bottom: 0px;
+  }
+  .check-boxes {
+    font-size: 40px;
+    cursor: pointer;
+    margin-bottom: -5px;
+    margin-top: 20px;
+  }
+  .question-answer-item {
+    background-color: #fff;
+    border-radius: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid rgb(223, 223, 223);
+    vertical-align: middle;
+  }
+
+  .bg-success {
+    background-color: #007408;
+  }
+  .bg-primary {
+    background-color: #0057bb;
+  }
+  .bg-danger {
+    background-color: #a80000;
+  }
+  .bg-warning {
+    background-color: #af7200;
+  }
+  .question-answers-container {
+    background-color: rgb(230, 230, 230);
+    border-radius: 5px;
+    padding: 10px;
+  }
+  .my-tab {
+    background-color: #fff;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  .my-tab .row {
+    margin: 0px !important;
+  }
+  .my-tab .row .col {
+    padding: 0px !important;
+  }
+  .active-tab, .inactive-tab {
+    border-bottom: 5px solid rgb(255, 255, 255);
+    color: rgb(54, 54, 54);
+    font-weight: bold;
+    padding: 10px;
+    padding-top: 20px;
+    cursor: pointer;
+  }
+  .active-tab {
+    border-bottom: 5px solid #0057bb;
+    color: #0057bb;
+  }
+  .inactive-tab:hover {
+    background-color: #bbdbff;
+    color: #00438f;
+    border-bottom: 5px solid #bbdbff;
+  }

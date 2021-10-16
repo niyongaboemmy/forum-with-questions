@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import Footer from '../../components/Footer'
 import Loading from '../../shared/Loading/Loading';
 import Alert from '../../shared/Alert/Alert';
 import axios from 'axios';
@@ -14,7 +13,6 @@ import searchData from "../../utils/search";
 import Modal from '../../shared/Modal/Modal';
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css'; // ES6
-import { AdminNav } from '../../components/AdminNav';
 
 // import { create } from 'doka';
 
@@ -272,7 +270,7 @@ const CreateTopic = (props) => {
                             </div>
                             <div className="col xl9 l9 m12 s12">
                             
-                                <div className="list-item right-col animate__animated animate__zoomIn" style={{overflow: 'hidden'}}>
+                                <div className="list-item animate__animated animate__zoomIn">
                                     <form onSubmit={createPost}>
                                         <div>
                                             <div className="row">

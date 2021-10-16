@@ -4,6 +4,7 @@ import {
   ADD_TEST_QUESTION_ANSWER,
   REMOVE_TEST_QUESTION,
   REMOVE_TEST_QUESTION_ANSWER,
+  CLEAR_TEST_TEMP,
 } from "./types";
 
 /**
@@ -44,5 +45,11 @@ export const removeTestQuestionAnswer = (answer_id) => (dispatch) => {
   dispatch({
     type: REMOVE_TEST_QUESTION_ANSWER,
     payload: answer_id,
+  });
+};
+
+export const clearTestTemps = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_TEST_TEMP,
   });
 };
