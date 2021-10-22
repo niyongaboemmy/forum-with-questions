@@ -12,10 +12,12 @@ import TestQuestions from './TestQuestions/TestQuestions';
 import TestQuestionsList from './TestQuestionsList/TestQuestionsList';
 import { v4 as uuidv4 } from 'uuid';
 import Loading from '../../shared/Loading/Loading';
+import Modal from '../../shared/Modal/Modal'
+import { MdAdd } from 'react-icons/md';
 
 export class PrepareTest extends Component {
   state = {
-    modal: true,
+    modal: false,
     addQuestionTab: false,
     loading: false,
   }
@@ -67,7 +69,7 @@ export class PrepareTest extends Component {
                       <div className="my-title" style={{fontSize: '23px'}}>Prepare test</div>
                     </div>
                     <div className="col xl6 l6 m6 s12">
-                      <button className="waves-effect waves-light right my-btn bg-color hoverable main-btn">View list</button>
+                      <Link to="/tests" className="waves-effect waves-light right my-btn bg-color hoverable main-btn">View list</Link>
                     </div>
                   </div>
                   {this.state.loading === true ? <center><Loading msg="Please wait" /></center> :
@@ -132,7 +134,7 @@ export class PrepareTest extends Component {
                   <div className="my-tab">
                     <div className="row">
                       <div className="col s3 m3 l3 xl3">
-                        <div onClick={() => this.setState({ addQuestionTab: true })} className={`${this.state.addQuestionTab === true ? "active-tab" : "inactive-tab"}`}>Add question</div>
+                        <div onClick={() => {this.setState({ modal: true })}} className={`${this.state.addQuestionTab === true ? "active-tab" : "inactive-tab"} add-btn`}><MdAdd className="my-add-icon" /> Add question</div>
                       </div>
                       <div className="col s3 m3 l3 xl3">
                         <div onClick={() => this.setState({ addQuestionTab: false })} className={`${this.state.addQuestionTab === true ? "inactive-tab" : "active-tab"}`}>List of Questions ({this.props.questions.length})</div>
@@ -155,6 +157,17 @@ export class PrepareTest extends Component {
             </div>
           </div>
         </div>
+        {this.state.modal === true &&
+        <Modal
+        close={() => this.setState({ modal: false })}
+        backDrop={true}
+        closeBackdrop={false}
+        theme="blue"
+        title="Create new question"
+        className="open max-width animate-in animate__animated animate__bounceIn"
+        >
+          <TestQuestions />
+        </Modal>}
       </Fragment>
     )
   }

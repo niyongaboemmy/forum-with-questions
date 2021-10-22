@@ -6,6 +6,7 @@ import axios from 'axios'
 import searchData from "../../utils/search";
 import { API_URL } from '../../utils/api'
 import Loading from '../../shared/Loading/Loading';
+import { MdDeleteForever } from 'react-icons/md'
 
 export class Users extends Component {
     state = {
@@ -26,6 +27,17 @@ export class Users extends Component {
             console.log("Topic err: ", error);
         }
     }
+    removeUser = async (user_id) => {
+        this.setState({ loading: true });
+        try {
+            setAuthToken();
+            const res = await axios.delete(`${API_URL}/users/disactive/${user_id}`);
+            this.loadUsers();
+        } catch (error) {
+            this.setState({ loading: false });
+            console.log("remove err: ", error);
+        }
+    }
     componentDidMount = () => {
         this.loadUsers();
     }
@@ -43,7 +55,7 @@ export class Users extends Component {
                     <div className="col xl10 l10 m10 s12">
                         <div class="main admin-container-main animate__animated animate__zoomIn">
                             <div class="container-fluid">
-                                <div className="row" style={{backgroundColor: '#fff'}}>
+                                <div className="row" style={{backgroundColor: '#fff', margin: '0px'}}>
                                     <center>
                                         <h4 style={{fontSize: '20px', margin: '0px', paddingTop: '36px'}} class="my-title">List of system users</h4>
                                     </center>
@@ -82,13 +94,15 @@ export class Users extends Component {
                                                     )}
 
                                                     {this.state.users === "" ? "" : 
-                                                        searchData(this.state.users, this.state.search, { fname: true, lname: true, username: true }).map((item, i) => (
+                                                        this.state.loading === false && searchData(this.state.users, this.state.search, { fname: true, lname: true, username: true }).map((item, i) => (
                                                             <tr key={i + 1}>
                                                                 <td>{i + 1}</td>
                                                                 <td>{item.fname}</td>
                                                                 <td>{item.lname}</td>
                                                                 <td>{item.username}</td>
-                                                                <td></td>
+                                                                <td>
+                                                                    <MdDeleteForever className="remove-icon right" onClick={() => this.removeUser(item.user_id)} />
+                                                                </td>
                                                             </tr>
                                                         ))
                                                     }

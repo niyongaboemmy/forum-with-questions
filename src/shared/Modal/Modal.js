@@ -38,7 +38,7 @@ const Modal = (props) => {
       >
         <div className="modal-content">
           <div className={`modal-header bg-${theme}`}>
-            <h5 className="modal-title text-white"><MdInfo /> {title}</h5>
+            <h5 className="modal-title text-white font-bold">{title}</h5>
             <AiFillCloseCircle
               className={`close right close-icon ${
                 theme === "light" ? "text-secindary" : "text-white"

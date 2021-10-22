@@ -6,7 +6,8 @@ import axios from 'axios'
 import searchData from "../../utils/search";
 import { API_URL } from '../../utils/api'
 import Loading from '../../shared/Loading/Loading';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { CgMoreO } from 'react-icons/cg';
 
 export class TopicsList extends Component {
     state = {
@@ -24,7 +25,7 @@ export class TopicsList extends Component {
             this.setState({ loading: false });
         } catch (error) {
             this.setState({ loading: false });
-            console.log("Topic err: ", error);
+            console.log("Topic err: ", {...error});
         }
     }
     componentDidMount = () => {
@@ -43,7 +44,7 @@ export class TopicsList extends Component {
                     <div className="col xl10 l10 m10 s12">
                         <div class="main admin-container-main animate__animated animate__zoomIn">
                             <div class="container-fluid">
-                                <div className="row" style={{backgroundColor: '#fff'}}>
+                                <div className="row" style={{backgroundColor: '#fff', margin: '0px'}}>
                                     <center>
                                         <h4 style={{fontSize: '20px', margin: '0px', paddingTop: '36px'}} class="my-title">List of topics</h4>
                                     </center>
@@ -56,7 +57,7 @@ export class TopicsList extends Component {
                                 </div>
                                 <div class="row">
                                     <div class="col s12 m12">
-                                        <div class="card">
+                                        <div class="white" style={{borderRadius: '5px', marginTop: '10px'}}>
                                             <table class="bordered highlight responsive-table">
                                                 <thead>
                                                     <tr>
@@ -88,11 +89,11 @@ export class TopicsList extends Component {
                                                             <tr key={i + 1}>
                                                                 <td>{i + 1}</td>
                                                                 <td>{item.fname} {item.lname}</td>
-                                                                <td>{item.image !== undefined ? (<img className="topic-img" style={{maxHeight: '100px'}} src={`${API_URL}/${item.image}`} />) : ""}</td>
-                                                                <td>{item.topic_title}</td>
-                                                                <td>{item.description}</td>
+                                                                <td>{item.image !== undefined ? (<img alt="" className="topic-img" style={{maxHeight: '100px'}} src={`${API_URL}/${item.image}`} />) : ""}</td>
+                                                                <td><div dangerouslySetInnerHTML={{__html: item.topic_title}}></div></td>
+                                                                <td><div dangerouslySetInnerHTML={{__html: item.description}}></div></td>
                                                                 <td>{item.hour} {item.day} {item.date} {item.year}</td>
-                                                                <td><Link to={`/topic-comments/${item.topic_id}`}><i className="fas fa-list table-tools"></i></Link></td>
+                                                                <td><Link to={`/topic-comments/${item.topic_id}`}><CgMoreO style={{fontSize: '36px'}} /></Link></td>
                                                             </tr>
                                                         ))
                                                     }

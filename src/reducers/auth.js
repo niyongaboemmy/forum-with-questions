@@ -32,7 +32,7 @@ export default function auth (state = initialState, action) {
         isAuthenticated: true,
         loading: false,
         navOpen: true,
-        user_id: localStorage.getItem(USER_ID),
+        user_id: payload.data.user_id !== undefined ? payload.data.user_id : payload.data.admin_id,
         userCategory: state.userCategory,
         ...payload,
       };

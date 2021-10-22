@@ -28,6 +28,11 @@ import Users from "./containers/Users/Users";
 import TopicsList from "./containers/TopicsList/TopicsList";
 import TopicComments from "./containers/TopicComments/TopicComments";
 import PrepareTest from "./containers/PrepareTest/PrepareTest";
+import Tests from "./containers/PrepareTest/Tests/Tests";
+import DoTest from "./containers/DoTest/DoTest";
+import Admins from "./containers/Users/Admins";
+import RegisterAdmin from "./containers/Users/RegisterAdmin";
+import TestResults from "./containers/TestResults/TestResults";
 
 class App extends Component {
   render() {
@@ -43,10 +48,15 @@ class App extends Component {
               <PrivateRoute exact path="/admin-create-topic" component={AdminCreateTopic} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
+              <Route exact path="/register-admin" component={RegisterAdmin} />
               <PrivateRoute exact path="/admin" component={Admin} />
               <Route exact path="/admin-login" component={AdminLogin} />
               <PrivateRoute exact path="/users" component={Users} />
+              <PrivateRoute exact path="/admins" component={Admins} />
               <PrivateRoute exact path="/test" component={PrepareTest} />
+              <PrivateRoute exact path="/tests" component={Tests} />
+              <PrivateRoute exact path="/tests/:test_id" component={TestResults} />
+              <PrivateRoute exact path="/do-test" component={DoTest} />
               <PrivateRoute exact path="/topics-list" component={TopicsList} />
               <PrivateRoute exact path="/topic-comments/:topic_id" component={TopicComments} />
 

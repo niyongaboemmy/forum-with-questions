@@ -23,7 +23,7 @@ export class Topics extends Component {
             this.setState({ loading: false });
         } catch (error) {
             this.setState({ loading: false });
-            console.log("Topic err: ", error);
+            console.log("Topic err: ", {...error});
         }
     }
     componentDidMount = () => {

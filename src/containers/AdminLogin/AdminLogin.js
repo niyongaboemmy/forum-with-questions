@@ -24,7 +24,7 @@ class AdminLogin extends Component {
 
     componentDidMount() {
         if (this.props.isAuthenticated === true) {
-            this.props.history.push("/topics");
+            this.props.history.push("/admin");
         }
     }
     LoginUser = async (e) => {

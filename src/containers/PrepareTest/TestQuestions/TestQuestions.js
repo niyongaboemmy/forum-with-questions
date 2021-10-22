@@ -151,7 +151,7 @@ class TestQuestions extends Component {
                 </div>}
               </div>
             </div>
-            <div className="row">
+            <div className="row" style={{marginBottom: '200px'}}>
               <div className="col s12">
                 <button onClick={() => this.saveQuestion()} className="waves-effect waves-light my-btn bg-color hoverable main-btn right" style={{marginTop: '20px', marginBottom: '20px'}}>Save whole question</button>
               </div>

@@ -1,3 +1,6 @@
+import axios from "axios";
+import { API_URL, CONFIG } from "../utils/api";
+import setAuthToken from "../utils/setAuthToken";
 import { 
   ADD_TEST_DETAILS, 
   ADD_TEST_QUESTION, 
@@ -5,6 +8,9 @@ import {
   REMOVE_TEST_QUESTION,
   REMOVE_TEST_QUESTION_ANSWER,
   CLEAR_TEST_TEMP,
+  LOGOUT,
+  GET_TESTS,
+  CHANGE_TEST_STATUS,
 } from "./types";
 
 /**
@@ -53,3 +59,48 @@ export const clearTestTemps = () => (dispatch) => {
     type: CLEAR_TEST_TEMP,
   });
 };
+
+export const getTests = (callback) => async (dispatch) => {
+  try {
+    callback(true);
+    setAuthToken();
+    const res = await axios.get(`${API_URL}/test`, CONFIG);
+    console.log("Res: ", res);
+    let temp = [];
+    for (let t = res.data.length-1; t >= 0; t--) {
+      temp = [...temp, res.data[t]];
+    }
+    dispatch({
+      type: GET_TESTS,
+      payload: temp,
+    });
+    callback(false);
+  } catch (error) {
+    callback(false);
+    dispatch({
+      type: LOGOUT,
+    });
+  }
+};
+
+export const setTestStatus = (test_id, status, callback) => async (dispatch) => {
+  try {
+    callback(true);
+    setAuthToken();
+    const res = await axios.patch(`${API_URL}/test/publish/${test_id}`, {
+      value: status
+    }, CONFIG);
+    console.log("Publish: ", res);
+    dispatch({
+      type: CHANGE_TEST_STATUS,
+      payload: {
+        test_id: test_id,
+        status: status
+      },
+    });
+    callback(false);
+  } catch (error) {
+    console.log("er: ", {...error})
+    callback(false);
+  }
+}

@@ -74,7 +74,7 @@ class Login extends Component {
             localStorage.setItem(USER_ID, res.data.data.user_id);
             localStorage.setItem(ACCOUNT_CATEGORY, "user");
             this.props.storeAccountCategory(localStorage.getItem(ACCOUNT_CATEGORY));
-            this.props.storeUserId(localStorage.getItem(USER_ID));
+            this.props.storeUserId(res.data.data.user_id);
     
             this.setState({loading: true});
     

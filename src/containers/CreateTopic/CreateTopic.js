@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import setAuthToken from '../../utils/setAuthToken';
 import searchData from "../../utils/search";
 import Modal from '../../shared/Modal/Modal';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css'; // ES6
 
@@ -228,8 +229,7 @@ const CreateTopic = (props) => {
                     <div className="container-fluid">
                         <div className="row" style={{marginBottom: '0px'}}>
                             <div className="col xl3 l3 m12 s12 left-col hidden-sm">
-                                <br />
-                                <h5 className="my-title" style={{color: '#fff'}}>My topics</h5>
+                                <h5 className="my-title" style={{color: '#fff'}}><Link to="/topics-list"><IoMdArrowRoundBack className="my-icon-arrow" /></Link> My topics</h5>
                                 <input onChange={(e) => setSearch(e.target.value)} value={search} type="search" className="browser-default my-input" placeholder="Search keyword..." />
                                 <section className="section left-section">
                                 {loadingTopics === true ? (

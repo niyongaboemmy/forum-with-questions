@@ -34,7 +34,7 @@ class Navbar extends Component {
                                 {console.log(this.props.auth.user)}
                                 {user !== null ? (
                                     <ul className="right hide-on-med-and-down nav-text" style={{marginRight: '15px'}}>
-                                        <li><NavLink  className="nav-text"to="/create-topic">Create a topic</NavLink></li>
+                                        <li><NavLink  className="nav-text"to="/do-test">Do Test</NavLink></li>
                                         <li><Link className="nav-text" to="/topics">View topics</Link></li>
                                         <li style={{paddingLeft: '15px'}}>{user.fname} {user.lname} </li>
                                         <li style={{paddingLeft: '15px', cursor: 'pointer'}} onClick={() => this.props.LogoutTheUser()}>Logout</li>
@@ -71,7 +71,7 @@ class Navbar extends Component {
                                         <div className="modal-menu animate__animated animate__zoomIn"><NavLink to="/"><i className="fas fa-user-circle"></i><br /><div className="modal-menu-text">{this.state.user.fname} {this.state.user.lname}</div></NavLink></div>
                                     </div>
                                     <div className="col xl2 l2 m2 s4">
-                                        <div className="modal-menu animate__animated animate__zoomIn"><NavLink to="/create-topic"><i className="fas fa-edit"></i><br /><div className="modal-menu-text">Create topic</div></NavLink></div>
+                                        <div className="modal-menu animate__animated animate__zoomIn"><NavLink to="/do-test"><i className="fas fa-edit"></i><br /><div className="modal-menu-text">Do test</div></NavLink></div>
                                     </div>
                                     <div className="col xl2 l2 m2 s4">
                                         <div className="modal-menu animate__animated animate__zoomIn"><NavLink to="/topics"><i className="fas fa-list"></i><br /><div className="modal-menu-text">Topics list</div></NavLink></div>
