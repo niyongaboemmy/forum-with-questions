@@ -19,7 +19,8 @@ export class Home extends Component {
                             </div>
                             <div className="col s12 m6">
                                 <div className="">
-                                    <h1 className="header home-title animate__animated animate__zoomIn" style={{fontWeight: 'bold', color: 'black', fontSize: '60px'}}>Online Physics Classroom</h1>
+                                    <h1 className="heade home-title animate__animated animate__zoomIn" style={{fontWeight: 'bold', color: 'rgb(0, 87, 187)', fontSize: '60px'}}>Web-based</h1>
+                                    <div className="animate__animated animate__zoomIn" style={{fontWeight: 'bold', color: 'black', fontSize: '36px', marginTop: '-24px', marginBottom: '40px'}}>Learning and Assessment Platform</div>
                                     <div className="row">
                                         <Link to="/topics" className="btn-large waves-effect outline-btn getStarted" style={{lineHeight: '48px !important', marginLeft: '10px'}}>Get Started</Link>
                                     </div>
@@ -34,7 +35,7 @@ export class Home extends Component {
                 <section className="section bg-white">
                     <div className="container">
                         <div>
-                            <h4 className="my-title">Web-based Learning and Assessment Platform</h4>
+                            {/* <h4 className="my-title">Web-based Learning and Assessment Platform</h4> */}
                             <div className="second-text">
                             Web-based Learning and Assessment Platform (WLAP) is an online Collaboration board. It is a suitable methodology of teaching and learning simple harmonic motion (SHM) since it facilitates collaboration between teachers and learners within a digital environment. Any user can ask and respond to questions, send a comment as well as develop an argument to benefit the class. Additionally, the WLAP is useful for researchers and educators who are interested in collecting data and ideas from specific participants. Furthermore, this WLAP allows learners to share resources and discuss posted topics, enabling them to learn from one another and get enough access to online op-ed Physics materials.   
                             </div>

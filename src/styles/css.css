@@ -155,7 +155,7 @@ nav {
 }
 .list-item {
     background-color: #fff;
-    padding: 20px;
+    padding: 0px;
     margin-bottom: 10px;
     border-radius: 3px;
     transition: 0.5s;
@@ -164,7 +164,8 @@ nav {
     margin-bottom: 0px;
 }
 .list-item:hover {
-    background-color: #f1f7ff;
+    /* background-color: #f1f7ff; */
+    /* border: 1px solid rgb(0, 83, 179); */
 }
 .editor-name, .editor-title {
     color: grey;
@@ -923,7 +924,8 @@ nav {
 }
 
 .list-title p {
-    margin: 26px;
+    margin: 10px;
+    margin-top: 20px;
 }
 .my-icon-arrow {
     font-size: 35px;
@@ -1014,4 +1016,21 @@ nav {
     margin-left: -8px;
     margin-top: -8px;
     margin-bottom: -8px;
+}
+
+.my-list-itm {
+    border: 1px solid #d7d7d7;
+}
+
+.my-list-itm:hover {
+    border: 1px solid #0073d1;
+}
+
+button:focus {
+    background:rgb(0, 67, 144) !important;
+    color: #fff !important;
+}
+
+.ql-editor {
+    min-height: 140px !important;
 }

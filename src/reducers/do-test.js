@@ -25,6 +25,8 @@ export default function doTest (state = initialState, action) {
           answers: []
         }]
       }
+    } else {
+      q_answers = "none"
     }
     return {
       ...state,

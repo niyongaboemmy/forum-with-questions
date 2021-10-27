@@ -24,10 +24,9 @@ import {
   submitUserTest,
   loadUserTestResults,
 } from "../../actions/do-test";
-import { v4 as uuidv4 } from 'uuid';
 import Loading from '../../shared/Loading/Loading';
-import { MdDeleteForever } from 'react-icons/md';
 import Navbar from '../../components/Navbar';
+import { MdInfo } from 'react-icons/md';
 
 export class DoTest extends Component {
   state = {
@@ -125,10 +124,23 @@ export class DoTest extends Component {
           {/* Nav Bar here */}
           <Navbar />
           <div className="row">
-            {this.state.submitAnswer === true || this.state.loading === true || this.props.testResults === null ?
+            {(this.state.submitAnswer === true || this.state.loading === true || this.props.testResults === null) && this.props.questionsAnswers !== "none" ?
             <div className="col xl12 l12 m12 s12 white" style={{paddingTop: '100px', paddingBottom: '100px'}}>
               <center><Loading msg="Please wait" /></center>
             </div> :
+            this.props.questionsAnswers === "none" ?
+            <div className="col xl12 l12 m12 s12 white" style={{paddingTop: '100px', paddingBottom: '100px'}}>
+              <center>
+                <div>
+                  <MdInfo style={{fontSize: '70px'}} />
+                </div>
+                <div style={{fontSize: '24px',}}>No test published!</div>
+                <div>
+                  <button onClick={() => window.location.reload()}>Reflesh page</button>
+                </div>
+              </center>
+            </div>
+            :
             <div className="col xl12 l12 m12 s12">
               <div className="container animate__animated animate__zoomIn">
                 <div className="container-fluid admin-b">

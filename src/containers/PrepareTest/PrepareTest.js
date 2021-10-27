@@ -75,7 +75,7 @@ export class PrepareTest extends Component {
                   {this.state.loading === true ? <center><Loading msg="Please wait" /></center> :
                   this.props.test.status === false ?
                   <div className="row" style={{backgroundColor: '#fff', paddingTop: '10px', paddingBottom: '10px', borderRadius: '4px', margin: '0px'}}>
-                    <div className="col s12 m5 l5 xl5">
+                    <div className="col s12 m10 l10 xl10">
                       <span>Test title</span>
                       <input 
                       onChange={(e) => {
@@ -88,7 +88,7 @@ export class PrepareTest extends Component {
                       type="text" 
                       value={this.props.test.test_title} className="validate browser-default my-input" />
                     </div>
-                    <div className="col s12 m5 l5 xl5">
+                    {/* <div className="col s12 m5 l5 xl5">
                       <span>Test duration in minutes</span>
                       <input 
                       onChange={(e) => {
@@ -100,26 +100,30 @@ export class PrepareTest extends Component {
                       }}
                       type="number" 
                       value={this.props.test.test_duration} className="validate browser-default my-input" />
-                    </div>
+                    </div> */}
                     <div className="col s12 m2 l2 xl2" style={{paddingTop: '25px'}}>
                       <button 
-                      onClick={() => this.props.addTestDetails({
+                      onClick={() => {
+                        if (this.props.test.test_title === "") {
+                          alert("Please fill test title");
+                        } else {
+                        this.props.addTestDetails({
                         test_title: this.props.test.test_title,
                         test_duration: this.props.test.test_duration,
                         status: true,
-                      })} 
+                      })}}} 
                       className="waves-effect waves-light right my-btn bg-color hoverable main-btn">Save changes</button>
                     </div>
                   </div> :
                   <div className="row" style={{backgroundColor: '#fff', paddingTop: '10px', paddingBottom: '10px', borderRadius: '4px', margin: '0px'}}>
-                    <div className="col s12 m5 l5 xl5">
+                    <div className="col s12 m10 l10 xl10">
                       <span>Test title</span>
                       <div style={{fontWeight: 'bolder'}}>{this.props.test.test_title}</div>
                     </div>
-                    <div className="col s12 m5 l5 xl5">
+                    {/* <div className="col s12 m5 l5 xl5">
                       <span>Test duration in minutes</span>
                       <div style={{fontWeight: 'bolder'}}>{this.props.test.test_duration}</div>
-                    </div>
+                    </div> */}
                     <div className="col s12 m2 l2 xl2">
                       <button 
                       onClick={() => this.props.addTestDetails({

@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
-import axios from "axios";
-import { AiOutlineLogin, AiOutlineUser, } from "react-icons/ai";
-import { Link, NavLink } from "react-router-dom";
-import { API_URL, CONFIG } from "../../../utils/api";
-import { TOKEN_NAME } from "../../../utils/api";
 import { connect } from "react-redux";
 import { addTestDetails, addTestQuestion, removeTestQuestion, addTestQuestionAnswer, removeTestQuestionAnswer } from "../../../actions/prepare-test";
 import { MdCheckBoxOutlineBlank, MdCheckBox, MdCheckCircle, MdRadioButtonUnchecked, MdDeleteForever } from 'react-icons/md';
 import { v4 as uuidv4 } from 'uuid';
+// import ReactQuill from 'react-quill';
+// import 'react-quill/dist/quill.snow.css'; // ES6
+// import EditorToolbar, { modules, formats } from "../../../components/EditorToolbar/EditorToolbar";
+import EditorComponent from "../../../components/EditorComponent/EditorComponent";
 
 class TestQuestions extends Component {
   state = {
@@ -76,6 +75,13 @@ class TestQuestions extends Component {
       this.clearQuestionDetails();
     }
   }
+
+  handleQuestion_description = (value) => {
+    this.setState({ question_description: value});
+  }
+  handleTemp_question_answer = (value) => {
+    this.setState({ temp_question_answer: value});
+  }
   render() {
     return (
       <div class="row" style={{paddingTop: '10px', margin: '0px'}}>
@@ -84,7 +90,7 @@ class TestQuestions extends Component {
           <div className="question-item">
             <div className="row">
               <div className="col s12">
-                <span>Question title</span>
+                <span className="font-bold">Question title</span>
                 <input 
                 onChange={(e) => {
                   this.setState({ question_title: e.target.value});
@@ -92,12 +98,11 @@ class TestQuestions extends Component {
                 type="text" value={this.state.question_title} className="validate browser-default my-input" />
               </div>
               <div className="col s12" style={{marginTop: '10px'}}>
-                <span>Question description</span>
-                <textarea 
-                onChange={(e) => {
-                  this.setState({ question_description: e.target.value});
-                }}
-                value={this.state.question_description} className="validate browser-default my-input" style={{maxWidth: '100%', minHeight: '100px'}}></textarea>
+                <span className="font-bold">Question description</span>
+                <EditorComponent
+                  id="question_description"
+                  item={this.state.question_description}
+                  handleItem={this.handleQuestion_description} />
               </div>
             </div>
           </div>
@@ -108,12 +113,10 @@ class TestQuestions extends Component {
                 <div className="row">
                   <div className="col s10 m10 l10 xl10">
                     <span>Answer</span>
-                    <textarea 
-                    onChange={(e) => {
-                      this.setState({ temp_question_answer: e.target.value});
-                    }}
-                    value={this.state.temp_question_answer}
-                    className="validate browser-default my-input" style={{maxWidth: '100%', minHeight: '100px'}}></textarea>
+                    <EditorComponent
+                      id="temp_question_answer"
+                      item={this.state.temp_question_answer}
+                      handleItem={this.handleTemp_question_answer} />
                   </div>
                   <div className="col s2 m2 l2 xl2">
                     <div className="check-boxes" onClick={() => this.setState({ temp_question_answer_status: !this.state.temp_question_answer_status })}>
@@ -126,7 +129,7 @@ class TestQuestions extends Component {
                   </div>
                 </div>
                 {this.state.question_answers.length > 0 &&
-                <div className="question-answers-container">
+                <div className="question-answers-container" style={{marginTop: '20px'}}>
                   <span className="font-bold">List of answers</span>
                   {this.state.question_answers.map((item, i) => (
                     <div key={i + 1} className="question-answer-item">
@@ -139,7 +142,7 @@ class TestQuestions extends Component {
                           <MdRadioButtonUnchecked />
                         </div>}
                         <div className="col s10 m10 l10 xl10">
-                          <div className="font-bold" style={{margin: '5px'}}>{item.value}</div>
+                          <div className="font-bold" style={{margin: '5px'}} dangerouslySetInnerHTML={{__html: item.value}}></div>
                           <div style={{marginLeft: '5px'}}>Status: {item.status === true ? "Correct" : "Incorrect"}</div>
                         </div>
                         <div className="col s1 m1 l1 xl1" style={{fontSize: '36px', color: '#a80000', cursor: 'pointer'}}>

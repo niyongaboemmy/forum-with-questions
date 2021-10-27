@@ -24,8 +24,8 @@ class TestQuestionsList extends Component {
             <div key={i + 1}className="question-item">
               <div className="row">
                 <div className="col s11">
-                  <div className="font-bold">{item.title}</div>
-                  <div>{item.description}</div>
+                  <div className="font-bold" dangerouslySetInnerHTML={{__html: item.title}}></div>
+                  <div dangerouslySetInnerHTML={{__html: item.description}}></div>
                 </div>
                 <div className="col s1" style={{fontSize: '36px', color: '#a80000', cursor: 'pointer'}}>
                   <MdDeleteForever className="right" onClick={() => this.props.removeTestQuestion(item.question_id)} />

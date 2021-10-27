@@ -219,7 +219,7 @@ export class Details extends Component {
                                 <div class="list-item right-col animate__animated animate__zoomIn" style={{backgroundColor: 'rgb(241 241 241)'}}>
                                     <div class="row" style={{marginLeft: 'auto', marginRight: 'auto'}}>
                                         <div class="col xl2 l2 m2 s12">
-                                            <div class="user-list-icon hidden-sm">
+                                            <div class="user-list-icon hidden-sm" style={{textAlign: 'start', marginTop: '10px'}}>
                                                 <Link to="/topics">
                                                     <i className="fas fa-arrow-alt-circle-left left hidden-lg" style={{marginRight: '-65px'}}></i>
                                                 </Link>

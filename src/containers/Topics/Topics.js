@@ -58,14 +58,14 @@ export class Topics extends Component {
                     {this.state.topics === "" ? "" : 
                         searchData(this.state.topics, this.state.search, { fname: true, lname: true, }).map((item, i) => (
                             <Link to={`/details/${item.topic_id}`} key={i + 1}>
-                                <div class="list-item animate__animated animate__zoomIn main-topics" style={{border: '1px solid #d7d7d7'}}>
+                                <div class="list-item my-list-itm animate__animated animate__zoomIn main-topics">
                                     <div class="row">
-                                        <div class="col xl1 l1 m1 s1">
+                                        {/* <div class="col xl1 l1 m1 s1">
                                             <div class="user-list-icon">
                                                 <i class="fas fa-user-circle"></i>
                                             </div>
-                                        </div>
-                                        <div class="col xl11 l11 m11 s10">
+                                        </div> */}
+                                        <div class="col xl12 l12 m12 s11">
                                             <div class="list-title" style={{fontSize: '16px', color: 'black', marginLeft: '10px'}} dangerouslySetInnerHTML={{__html: item.topic_title}}></div>
                                             <div className="topic-img-container">{item.image !== undefined ? (<img className="topic-img" alt="" src={`${API_URL}/${item.image}`} />) : ""}</div>
                                             <div class="list-details" dangerouslySetInnerHTML={{__html: item.description}}></div>

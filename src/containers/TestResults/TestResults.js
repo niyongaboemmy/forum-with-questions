@@ -26,7 +26,6 @@ export class TestResults extends Component {
     smallLoading: false,
     selectedTest: "",
     testMarks: null,
-    users: null,
   }
 
   setLoading = (status) => {
@@ -35,20 +34,6 @@ export class TestResults extends Component {
   setSemiLoading = (status) => {
     this.setState({ smallLoading: status });
   }
-
-  loadUsers = async () => {
-    this.setState({ loading: true });
-    try {
-        setAuthToken();
-        const res = await axios.get(`${API_URL}/users`);
-        this.setState({ users: res.data.data });
-        console.log("users: ", res.data.data)
-        this.setState({ loading: false });
-    } catch (error) {
-        this.setState({ loading: false });
-        console.log("Topic err: ", error);
-    }
-}
 
   getTestResults = async (test_id) => {
     this.setLoading(true);
@@ -66,7 +51,6 @@ export class TestResults extends Component {
 
   componentDidMount = () => {
     if (this.props.match.params.test_id) {
-      this.loadUsers();
       this.getTestResults(this.props.match.params.test_id);
     }
   }
@@ -77,15 +61,6 @@ export class TestResults extends Component {
       sum += question.marks
     }
     return sum/questions.length;
-  }
-
-  findUser = (user_id) => {
-    if (this.state.users === null) {
-      return null;
-    } else {
-      let user = this.state.users.find(usr => usr.user_id === parseInt(user_id));
-      return user !== null && user !== undefined ? user : null;
-    }
   }
   
   render() {
@@ -110,7 +85,7 @@ export class TestResults extends Component {
                       <Link to="/tests" className="waves-effect waves-light right my-btn bg-color hoverable main-btn">Back to list</Link>
                     </div>
                   </div>
-                  {this.state.loading === true || this.state.testMarks === null || this.state.users === null ? <center><Loading msg="Please wait" /></center> :
+                  {this.state.loading === true || this.state.testMarks === null ? <center><Loading msg="Please wait" /></center> :
                   <div>
                     <div className="white">
                       <table>
@@ -125,11 +100,11 @@ export class TestResults extends Component {
                         </thead>
                         <tbody>
                           {this.state.testMarks !== null && this.state.testMarks.map((item, i) => (
-                            <tr key={i + 1} style={this.findMarksTotal(item.questionMarks) < 50 ? {color: '#8f5c00', backgroundColor: 'rgb(255 249 239)'} : {fontWeight: 'bold',}}>
+                            <tr key={i + 1} style={this.findMarksTotal(item.questionMarks) < 50 ? {color: '#8f5c00', backgroundColor: 'rgb(255 249 239)'} : {}}>
                               <td>{i + 1}</td>
-                              <td>{this.findUser(item.user_id) !== null && this.findUser(item.user_id).fname}</td>
-                              <td>{this.findUser(item.user_id) !== null && this.findUser(item.user_id).lname}</td>
-                              <td>{this.findUser(item.user_id) !== null && this.findUser(item.user_id).username}</td>
+                              <td>{item.user.fname}</td>
+                              <td>{item.user.lname}</td>
+                              <td>{item.user.username}</td>
                               <td className="right">{this.findMarksTotal(item.questionMarks).toFixed(2)}%</td>
                             </tr>
                           ))}
