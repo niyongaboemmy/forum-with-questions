@@ -80,15 +80,15 @@ export class Home extends Component {
             <div>
               {/* <h4 className="my-title">Web-based Learning and Assessment Platform</h4> */}
               <div className="second-text">
-                Web-based Learning and Assessment Platform (WLAP) is an online
+                Web-Based Learning and Assessment Platform (WBLAP) is an online
                 Collaboration board. It is a suitable methodology of teaching
-                and learning simple harmonic motion (SHM) since it facilitates
+                and learning propagation of mechanical wave since it facilitates
                 collaboration between teachers and learners within a digital
                 environment. Any user can ask and respond to questions, send a
                 comment as well as develop an argument to benefit the class.
-                Additionally, the WLAP is useful for researchers and educators
+                Additionally, the WBLAP is useful for researchers and educators
                 who are interested in collecting data and ideas from specific
-                participants. Furthermore, this WLAP allows learners to share
+                participants. Furthermore, this WBLAP allows learners to share
                 resources and discuss posted topics, enabling them to learn from
                 one another and get enough access to online op-ed Physics
                 materials.
