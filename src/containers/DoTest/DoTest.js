@@ -219,7 +219,13 @@ export class DoTest extends Component {
                         {this.props.testResults.length > 0 &&
                         <div className="font-bold" style={{padding: '5px', paddingTop: '8px', backgroundColor: 'white', color: 'blue', width: 'max-content', float: 'right', textDecoration: 'underline'}}>Total marks: {this.findTotalMarks(this.props.testResults).toFixed(2)}%</div>}
                       </div>
-                      {this.props.testResults.length > 0 && this.props.testResults.map((item, i) => (
+                      {preparedTest === null || preparedTest === undefined ? <Loading /> : preparedTest.show_correct_answer === 0 ? 
+                      <div>
+                        <center>
+                          
+                        </center>
+                      </div> 
+                      : this.props.testResults.length > 0 && this.props.testResults.map((item, i) => (
                         <div key={i + 1}className="question">
                           <div className="row" style={{margin: '0px'}}>
                             <div className="col s10 m10 l10 xl10">

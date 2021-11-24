@@ -16,8 +16,7 @@ import {
   setTestStatus,
  } from "../../actions/prepare-test";
 import Loading from '../../shared/Loading/Loading';
-import setAuthToken from '../../utils/setAuthToken';
-
+import { MdArrowBack } from 'react-icons/md'
 export class TestResults extends Component {
   state = {
     modal: true,
@@ -26,6 +25,7 @@ export class TestResults extends Component {
     smallLoading: false,
     selectedTest: "",
     testMarks: null,
+    testDetails: null,
   }
 
   setLoading = (status) => {
@@ -33,6 +33,20 @@ export class TestResults extends Component {
   }
   setSemiLoading = (status) => {
     this.setState({ smallLoading: status });
+  }
+
+  getTestDetails = async (test_id) => {
+    this.setLoading(true);
+    try {
+      const res = await axios.get(`${API_URL}/test/${test_id}`);
+      if (res.status === 200) {
+        console.log("Test details: ", res.data)
+        this.setState({ testDetails: res.data })
+      }
+    } catch (error) {
+      console.log("Err: ", {...error});
+    }
+    this.setLoading(false);
   }
 
   getTestResults = async (test_id) => {
@@ -49,8 +63,24 @@ export class TestResults extends Component {
     this.setLoading(false);
   }
 
+  showAnswersDetailsStatus = async (test_id, status) => {
+    this.setLoading(true);
+    try {
+      const res = await axios.patch(`${API_URL}/test/showcorrectanswer/${test_id}`, {
+        value: status
+      });
+      if (res.status === 200) {
+        this.getTestDetails(test_id);
+      }
+    } catch (error) {
+      this.setLoading(false);
+      console.log("Err: ", {...error});
+    }
+  }
+
   componentDidMount = () => {
     if (this.props.match.params.test_id) {
+      this.getTestDetails(this.props.match.params.test_id);
       this.getTestResults(this.props.match.params.test_id);
     }
   }
@@ -79,13 +109,27 @@ export class TestResults extends Component {
                 <div className="container-fluid admin-bg">
                   <div className="row" style={{margin: '0px'}}>
                     <div className="col xl6 l6 m6 s12">
-                      <div className="my-title" style={{fontSize: '23px'}}>Test results for users</div>
+                      <div className="row">
+                        <div className="col" style={{paddingRight: '0px', paddingLeft: '10px'}}>
+                          <Link to="/tests">
+                            <MdArrowBack className="my-icon-arrow" />
+                          </Link>
+                        </div>
+                        <div className="col">
+                          <div className="my-title" style={{fontSize: '23px', marginBottom: '0px'}}>{this.state.testDetails !== null && this.state.testDetails.title}</div>
+                          <div style={{marginBottom: '20px', color: this.state.testDetails === null ? "grey" : this.state.testDetails.show_correct_answer === 1 ? "black" : "gray"}}>{this.state.testDetails === null ? "" : this.state.testDetails.show_correct_answer === 1 ? "Users can view test marks and question details" : "Users can view only total marks"}</div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="col xl6 l6 m6 s12">
-                      <Link to="/tests" className="waves-effect waves-light right my-btn bg-color hoverable main-btn">Back to list</Link>
+                    <div className="col xl6 l6 m6 s12" style={{paddingTop: '20px'}}>
+                      {this.state.testDetails !== null && this.state.testDetails.show_correct_answer === 1 ?
+                      <button onClick={() => this.state.testDetails !== null && this.showAnswersDetailsStatus(this.state.testDetails.test_id, this.state.testDetails.show_correct_answer === 1 ? false : true)} className="waves-effect waves-light right my-btn bg-color hoverable main-btn">Hide marks details</button> :
+                      this.state.testDetails !== null && this.state.testDetails.show_correct_answer === 0 ?
+                      <button onClick={() => this.state.testDetails !== null && this.showAnswersDetailsStatus(this.state.testDetails.test_id, this.state.testDetails.show_correct_answer === 1 ? false : true)} className="waves-effect waves-light right my-btn bg-color hoverable main-btn" style={{backgroundColor: '#00a96a', border: 'none'}}>Show marks details</button> :
+                      <div className="right" style={{backgroundColor: 'lightgrey', padding: '5px', paddingLeft: '15px', paddingRight: '15px', paddingTop: '8px'}}>Please wait...</div>}
                     </div>
                   </div>
-                  {this.state.loading === true || this.state.testMarks === null ? <center><Loading msg="Please wait" /></center> :
+                  {this.state.loading === true || this.state.testMarks === null || this.state.testDetails === null ? <center><Loading msg="Please wait" /></center> :
                   <div>
                     <div className="white">
                       <table>

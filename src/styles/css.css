@@ -10,20 +10,20 @@ body {
 }
 nav {
     background-color: #fff !important;
-    color: rgb(0, 87, 187);
+    color: rgb(20 105 255);
 }
 .nav-text {
-    color: rgb(0, 87, 187) !important;
+    color: rgb(20 105 255) !important;
     font-weight: bold;
 }
 .blue-text {
-    color: rgb(0, 87, 187) !important;
+    color: rgb(20 105 255) !important;
 }
 .left-side {
     margin-left: 20px;
 }
 .right-img {
-    margin-top: 100px;
+    margin-top: 0px;
 }
 .nav-text li:hover {
     font-weight: bold;
@@ -47,8 +47,8 @@ nav {
     border-radius: 5px !important;
     border: 2px solid #fff !important;
     line-height: 30px !important;
-    background-color: rgb(0, 87, 187) !important;
-    border-color: rgb(0, 87, 187) !important;
+    background-color: rgb(20 105 255) !important;
+    border-color: rgb(20 105 255) !important;
     /* font-weight: bold !important; */
     text-transform: none !important;
 }
@@ -56,8 +56,8 @@ nav {
     border-radius: 5px !important;
     border: 2px solid #fff !important;
     line-height: 30px !important;
-    background-color: rgb(0, 87, 187) !important;
-    border-color: rgb(0, 87, 187) !important;
+    background-color: rgb(20 105 255) !important;
+    border-color: rgb(20 105 255) !important;
     font-weight: bold !important;
 }
 .only-outline-btn {
@@ -73,11 +73,11 @@ nav {
     border-color: #fff !important;
 }
 .only-outline-btn:hover {
-    background-color: rgb(0, 87, 187) !important;
-    border-color: rgb(0, 87, 187) !important;
+    background-color: rgb(20 105 255) !important;
+    border-color: rgb(20 105 255) !important;
 }
 .search-bar {
-    background-color: rgb(0, 87, 187);
+    background-color: rgb(20 105 255);
     padding: 27px;
     color: #fff;
     position: relative;
@@ -91,7 +91,7 @@ nav {
 }
 .my-title {
     margin-bottom: 36px;
-    color: rgb(0, 87, 187);
+    color: rgb(20 105 255);
     font-weight: bold;
 }
 .section {
@@ -105,14 +105,14 @@ nav {
     font-size: 22px !important;
     font-weight: bold;
     /* margin-left: 20px; */
-    color: rgb(0, 87, 187) !important;
+    color: rgb(20 105 255) !important;
 }
 .page-footer {
-    background-color: rgb(0, 87, 187) !important;
+    background-color: rgb(18 69 159) !important;
     margin-top: 10px;
 }
 .nav-bar-lower {
-    background-color: rgb(0, 87, 187);
+    background-color: rgb(20 105 255);
     color: #fff;
     padding: 0px;
     text-align: center;
@@ -148,7 +148,7 @@ nav {
 }
 .user-list-icon {
     text-align: center;
-    color: rgb(0, 87, 187);
+    color: rgb(20 105 255);
 }
 .user-list-icon .fas {
     font-size: 38px;
@@ -174,7 +174,7 @@ nav {
     margin-right: 10px;
 }
 .editor-title {
-    color: rgb(0, 87, 187);
+    color: rgb(20 105 255);
 }
 .time-cont {
     color: #929292;
@@ -182,7 +182,7 @@ nav {
     margin-top: 8px;
 }
 .span-badge {
-    background-color: rgb(0, 87, 187);
+    background-color: rgb(20 105 255);
     border-radius: 50%;
     padding: 2px;
     width: 26px;
@@ -224,7 +224,7 @@ nav {
 }
 .user-list-icon-small {
     text-align: center;
-    color: rgb(0, 87, 187);
+    color: rgb(20 105 255);
 }
 .user-list-icon-small .fas {
     font-size: 30px;
@@ -250,7 +250,7 @@ nav {
     margin-top: 20px;
 }
 .span-badge-small {
-    background-color: rgb(0, 87, 187);
+    background-color: rgb(20 105 255);
     border-radius: 50%;
     padding: 2px;
     width: 26px;
@@ -285,7 +285,7 @@ nav {
     padding: 20px;
     margin-top: -10px;
     border-radius: 3px;
-    /* border-top: 4px solid rgb(0, 87, 187); */
+    /* border-top: 4px solid rgb(20 105 255); */
     color: #000;
 }
 .submit-comment .row {
@@ -336,12 +336,12 @@ nav {
 .login-icon {
     margin: 0px;
     padding: 0px;
-    background-color: rgb(0, 87, 187);
+    background-color: rgb(20 105 255);
     color: #fff;
     border-radius: 50%;
 }
 .regist-bars {
-    background: rgb(0, 87, 187);
+    background: rgb(20 105 255);
     color: #fff;
     font-size: 33px;
     border-radius: 50%;
@@ -349,7 +349,7 @@ nav {
 .regist-bars .regist-bars-icon {
     padding-top: 6px;
     padding-left: 48px;
-    color: rgb(0, 87, 187);
+    color: rgb(20 105 255);
     padding-bottom: 5px;
 }
 .main-btn {
@@ -357,8 +357,8 @@ nav {
     padding-left: 20px;
     padding-right: 20px;
     color: #fefefe;
-    border: 1px solid rgb(0, 87, 187);
-    background-color: rgb(0, 87, 187);
+    border: 1px solid rgb(20 105 255);
+    background-color: rgb(20 105 255);
     cursor: pointer;
 }
 .danger-color {
@@ -400,7 +400,7 @@ nav {
     border-radius: 12px;
 }
 .selected-tab {
-    background-color: rgb(0, 87, 187);
+    background-color: rgb(20 105 255);
     color: #fff;
     font-weight: bold;
 }
@@ -434,13 +434,13 @@ nav {
     background: #105ec3;
 }
 .left-col {
-    background-color: rgb(0, 87, 187);
+    background-color: rgb(20 105 255);
 }
 .left-col .side-nav-title {
     color: #fff;
 }
 .left-col .my-input {
-    background-color: rgb(0, 87, 187);
+    background-color: rgb(20 105 255);
     color: #fff;
     margin-bottom: 10px;
 }
@@ -518,7 +518,7 @@ nav {
     text-align: center;
 }
 .modal-menu {
-    border: 1px solid rgb(0, 87, 187);
+    border: 1px solid rgb(20 105 255);
     border-radius: 3px;
     margin-bottom: 0px;
     text-align: center;
@@ -929,7 +929,7 @@ nav {
 }
 .my-icon-arrow {
     font-size: 35px;
-    color: blue;
+    color: #0d58bb;
     margin-bottom: -10px;
     margin-right: 10px;
     background-color: #fff;
@@ -939,7 +939,7 @@ nav {
 
 .my-icon-arrow:hover {
     color: white;
-    background-color: blue;
+    background-color: #0d58bb;
 }
 
 .remove-icon {
