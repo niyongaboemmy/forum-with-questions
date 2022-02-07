@@ -1034,3 +1034,7 @@ button:focus {
 .ql-editor {
     min-height: 140px !important;
 }
+.cancel-btn {
+    background-color: #898989 !important;
+    border: none !important
+}

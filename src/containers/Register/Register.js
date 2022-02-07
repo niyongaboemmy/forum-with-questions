@@ -210,7 +210,7 @@ class Register extends Component {
                                 <center><NavLink to="/login" className="hoverable" style={{cursor: 'pointer', padding: '10px', borderRadius: '3px', color: '#004161'}}>Registered? Login</NavLink></center>
                                 <br/>
                                 <center>
-                                    <label>Universal chemistry network</label><br/>
+                                    <label>E-Physics Class</label><br/>
                                     <small><label>@2021</label></small>
                                 </center>
                             </form>

@@ -65,14 +65,14 @@ class Navbar extends Component {
                     style={{ marginRight: "15px" }}
                   >
                     <li>
-                      <NavLink className="nav-text" to="/do-test">
-                        Do Test
-                      </NavLink>
-                    </li>
-                    <li>
                       <Link className="nav-text" to="/topics">
                         View topics
                       </Link>
+                    </li>
+                    <li>
+                      <NavLink className="nav-text" to="/do-test">
+                        Do Test
+                      </NavLink>
                     </li>
                     <li style={{ paddingLeft: "15px" }}>
                       {user.fname} {user.lname}{" "}

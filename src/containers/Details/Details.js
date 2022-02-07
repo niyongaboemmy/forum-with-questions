@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
-import BG_IMAGE from '../../assets/content/img1.png'
 import setAuthToken from '../../utils/setAuthToken'
 import axios from 'axios'
 import { API_URL } from '../../utils/api'
@@ -10,7 +9,6 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from "prop-types"
 import { LogoutTheUser, toogleNav } from "../../actions/auth"
-import SubNav from '../../components/SubNav'
 import Loading from '../../shared/Loading/Loading'
 
 
@@ -29,6 +27,7 @@ export class Details extends Component {
         success: "",
         comments: "",
         loadingComment: false,
+        showComment: false,
     }
 
     loadTopics = async () => {
@@ -68,6 +67,7 @@ export class Details extends Component {
     loadComments = async (topic_id) => {
         this.setState({ loadingComment: true });
         try {
+            this.setState({ comments: [] });
             const res = await axios.get(`${API_URL}/discs/topic/${topic_id}`);
             this.setState({ comments: res.data.data });
             this.setState({ loadingComment: false });
@@ -186,7 +186,7 @@ export class Details extends Component {
                                     </center>
                                     {this.state.topics === "" ? "" : 
                                         searchData(this.state.topics, this.state.search, { topic_id: true }).map((item, i) => (
-                                            <div onClick={() => this.selectTopic(item.topic_id)} style={{cursor: 'pointer'}} key={i + 1} to="">
+                                            <div onClick={() => {this.selectTopic(item.topic_id); this.loadComments(item.topic_id)}} style={{cursor: 'pointer'}} key={i + 1} to="">
                                                 <div className="list-item-small  animate__animated animate__zoomIn">
                                                     <div className="row">
                                                         <div className="col xl2 l2 m2 s3">
@@ -216,7 +216,7 @@ export class Details extends Component {
                                 </section>
                             </div>
                             <div class="col xl9 l9 m12 s12">
-                                <div class="list-item right-col animate__animated animate__zoomIn" style={{backgroundColor: 'rgb(241 241 241)'}}>
+                                <div class="list-item right-col animate__animated animate__zoomIn" style={{backgroundColor: 'rgb(241 241 241)'}, this.state.showComment === false ? {height: '75vh'} : {}}>
                                     <div class="row" style={{marginLeft: 'auto', marginRight: 'auto'}}>
                                         <div class="col xl2 l2 m2 s12">
                                             <div class="user-list-icon hidden-sm" style={{textAlign: 'start', marginTop: '10px'}}>
@@ -305,6 +305,7 @@ export class Details extends Component {
                                         </div>
                                     </div>
                                 </div>
+                                {this.state.showComment === true ?
                                 <div class="submit-comment">
                                     <form onSubmit={this.createPostComment}>
                                         <div class="row">
@@ -334,10 +335,14 @@ export class Details extends Component {
                                             </div>
                                             <div class="col l2 m2 s12">
                                                 <button style={{maxWidth: '100%'}} class="btn-small waves-effect outline-btn nav-outline-btn submit-comment-btn right" type="submit"><i class="fas fa-edit"></i> <span className="">Send</span></button>
+                                                <button onClick={() => this.setState({ showComment: false })} style={{maxWidth: '100%', marginTop: '7.5px'}} class="btn-small waves-effect outline-btn nav-outline-btn submit-comment-btn right cancel-btn" type="button"><i class="fas fa-times"></i> <span className="">Cancel</span></button>
                                             </div>
                                         </div>
                                     </form>
-                                </div>
+                                </div> : 
+                                <div>
+                                    <div className="btn-small waves-effect outline-btn nav-outline-btn submit-comment-btn right" style={{paddingTop: '7.5px'}} onClick={() => this.setState({showComment: true })}>Comment</div>
+                                </div>}
                             </div>
                         </div>
                     </div>

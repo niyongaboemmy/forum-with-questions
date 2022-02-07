@@ -115,7 +115,7 @@ export class Home extends Component {
                       <p className="second-text">
                         Collaborative learning is a setting in which two or more
                         people learn or study something together. By employing
-                        WLAP as a physics teaching, learning, and assessment
+                        WBLAP as a physics teaching, learning, and assessment
                         tool, learners have more flexibility to work at their
                         own pace, which improves their learning experience and
                         helps them build a better understanding of provided
